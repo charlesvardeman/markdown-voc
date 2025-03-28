@@ -1,0 +1,80 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "{{repo}}",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "{{repo}}"
+    ]
+  },
+  {
+    "objectID": "index.html#developer-guide",
+    "href": "index.html#developer-guide",
+    "title": "{{repo}}",
+    "section": "Developer Guide",
+    "text": "Developer Guide\nIf you are new to using nbdev here are some useful pointers to get you started.\n\nInstall {{lib_path}} in Development mode\n# make sure {{lib_path}} package is installed in development mode\n$ pip install -e .\n\n# make changes under nbs/ directory\n# ...\n\n# compile to have changes apply to {{lib_path}}\n$ nbdev_prepare",
+    "crumbs": [
+      "{{repo}}"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "{{repo}}",
+    "section": "Usage",
+    "text": "Usage\n\nInstallation\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/{{user}}/{{lib_name}}.git\nor from conda\n$ conda install -c {{user}} {{lib_path}}\nor from pypi\n$ pip install {{lib_path}}\n\n\nDocumentation\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "{{repo}}"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "{{repo}}",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2",
+    "crumbs": [
+      "{{repo}}"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nextract_prefixes\n\n extract_prefixes (ast)\n\nExtract prefixes and base URI from a Markdown-ld AST.\n\nsource\n\n\nextract_triples\n\n extract_triples (ast)\n\nExtract RDF triples from a Markdown-ld AST.\n\nsource\n\n\nmarkdown_ld_to_triples\n\n markdown_ld_to_triples (markdown_text)\n\nConvert Markdown-LD text to RDF triples.\n\nsource\n\n\ntriples_to_turtle\n\n triples_to_turtle (triples)\n\nConvert triples to grouped Turtle format using RDFLib.\n\nsource\n\n\nmarkdown_ld_to_turtle\n\n markdown_ld_to_turtle (markdown_text)\n\nConvert Markdown-LD text to Turtle format using RDFLib’s serializer.\n\nsource\n\n\ntriples_to_rdflib_graph\n\n triples_to_rdflib_graph (triples, prefixes=None, base_uri=None)\n\nConvert our triples to an RDFLib graph with prefixes.\n\nsource\n\n\nmarkdown_ld_to_jsonld\n\n markdown_ld_to_jsonld (markdown_text)\n\nConvert Markdown-LD text to JSON-LD format.\n\nsource\n\n\nmarkdown_ld_convert\n\n markdown_ld_convert (markdown_text, output_format='turtle')\n\nConvert Markdown-LD text to various RDF formats.\n\nsource\n\n\nmain\n\n main ()\n\nCommand-line interface for markdown-ld.\n\n# Simple Markdown-ld example for testing\nmarkdown_ld_example = \"\"\"# Example Entity\n\n`&lt;#example-entity&gt;`\n\n## Property One\n\n`&lt;#property-one&gt;`\n\n### Has Value\n\n`&lt;#has-value&gt;`\n\n- `\"Some literal value\"`\n- Another value `42`\n\"\"\"\n\n\n# Test our parser\nmd = MarkdownIt()\ntokens = md.parse(markdown_ld_example)\nast = SyntaxTreeNode(tokens)\ntriples = extract_triples(ast)\nfor subject, predicate, obj in triples:\n    print(f\"{subject} {predicate} {obj} .\")\n\n&lt;#property-one&gt; &lt;#has-value&gt; \"Some literal value\" .\n&lt;#property-one&gt; &lt;#has-value&gt; 42 .",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "example.html",
+    "href": "example.html",
+    "title": "Schema.org Simplified Vocabulary",
+    "section": "",
+    "text": "&lt;https://example.org/schema&gt;\n@prefix schema: &lt;https://schema.org/&gt; .\n@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n@base &lt;https://example.org/schema&gt; .\nThis document describes a simplified subset of Schema.org vocabulary, designed to be particularly LLM-friendly. Each entity includes human-readable descriptions and examples to help language models understand the concepts better.\n\n\nschema:Person\nA person (alive, dead, undead, or fictional) with associated properties that describe their attributes and relationships.\n\n\nrdfs:comment\n\n\"A Person represents a human being, real or fictional. The Person type includes properties for describing attributes like name, birthdate, and address, as well as relationships to organizations, other people, and creative works.\"\n\n\n\n\nschema:name\n\n\"John Doe\" - A person’s full name as commonly used for identification\n\"Jane Smith\" - Names should be provided in the format most commonly used\n\n\n\n\nschema:givenName\n\n\"John\" - A person’s first name or given name\n\"Jane\" - The name that appears first in a person’s full name\n\n\n\n\nschema:familyName\n\n\"Doe\" - A person’s last name or family name\n\"Smith\" - The name that appears last in a person’s full name\n\n\n\n\nschema:birthDate\n\n\"1990-01-01\"^^xsd:date - The date of birth in ISO 8601 format (YYYY-MM-DD)\n\"2000-12-31\"^^xsd:date - Always use the full year, month, and day when known\n\n\n\n\nschema:jobTitle\n\n\"Software Engineer\" - A person’s job title or position\n\"Chief Executive Officer\" - The role a person plays in an organization\n\n\n\n\nschema:worksFor\n\nschema:Organization - The organization that employs the person\nA link to the organization where the person is employed\n\n\n\n\n\nschema:Organization\nAn organization such as a school, NGO, corporation, club, or any other group of people with a formal or informal structure.\n\n\nrdfs:comment\n\n\"An Organization represents a collection of people organized together into a community or other social, commercial or political structure. Organizations can be corporations, schools, government agencies, clubs, etc.\"\n\n\n\n\nschema:name\n\n\"Acme Corporation\" - The official name of the organization\n\"State University\" - Use the full, formal name when possible\n\n\n\n\nschema:legalName\n\n\"Acme Corporation, Inc.\" - The official name as registered in legal documents\n\"State University Foundation\" - May include legal designations like Inc., LLC, etc.\n\n\n\n\nschema:url\n\n\"https://example.com\" - The organization’s official website URL\n\"https://university.edu\" - Should be the primary or canonical URL\n\n\n\n\nschema:address\n\nschema:PostalAddress - The physical location of the organization\nLinks to a postal address that contains street, city, and other details\n\n\n\n\n\nschema:PostalAddress\nThe mailing address for a person, organization, or place.\n\n\nrdfs:comment\n\n\"A PostalAddress represents a physical address, typically consisting of street address, locality (city), region, postal code, and country.\"\n\n\n\n\nschema:streetAddress\n\n\"123 Main St.\" - The street number, name, and unit or apartment number\n\"456 Park Ave, Suite 789\" - Should include all details needed for mail delivery\n\n\n\n\nschema:addressLocality\n\n\"New York\" - The city or locality name\n\"San Francisco\" - Use the common name of the city, not abbreviations\n\n\n\n\nschema:addressRegion\n\n\"NY\" - The state, province, or region, often abbreviated\n\"California\" - Can be full name or standard abbreviation depending on locale\n\n\n\n\nschema:postalCode\n\n\"10001\" - The postal or zip code\n\"94103\" - Format varies by country\n\n\n\n\nschema:addressCountry\n\n\"US\" - The country, preferably as an ISO 3166-1 alpha-2 code\n\"United States\" - Can also be the full country name"
+  },
+  {
+    "objectID": "example.html#person",
+    "href": "example.html#person",
+    "title": "Schema.org Simplified Vocabulary",
+    "section": "",
+    "text": "schema:Person\nA person (alive, dead, undead, or fictional) with associated properties that describe their attributes and relationships.\n\n\nrdfs:comment\n\n\"A Person represents a human being, real or fictional. The Person type includes properties for describing attributes like name, birthdate, and address, as well as relationships to organizations, other people, and creative works.\"\n\n\n\n\nschema:name\n\n\"John Doe\" - A person’s full name as commonly used for identification\n\"Jane Smith\" - Names should be provided in the format most commonly used\n\n\n\n\nschema:givenName\n\n\"John\" - A person’s first name or given name\n\"Jane\" - The name that appears first in a person’s full name\n\n\n\n\nschema:familyName\n\n\"Doe\" - A person’s last name or family name\n\"Smith\" - The name that appears last in a person’s full name\n\n\n\n\nschema:birthDate\n\n\"1990-01-01\"^^xsd:date - The date of birth in ISO 8601 format (YYYY-MM-DD)\n\"2000-12-31\"^^xsd:date - Always use the full year, month, and day when known\n\n\n\n\nschema:jobTitle\n\n\"Software Engineer\" - A person’s job title or position\n\"Chief Executive Officer\" - The role a person plays in an organization\n\n\n\n\nschema:worksFor\n\nschema:Organization - The organization that employs the person\nA link to the organization where the person is employed"
+  },
+  {
+    "objectID": "example.html#organization",
+    "href": "example.html#organization",
+    "title": "Schema.org Simplified Vocabulary",
+    "section": "",
+    "text": "schema:Organization\nAn organization such as a school, NGO, corporation, club, or any other group of people with a formal or informal structure.\n\n\nrdfs:comment\n\n\"An Organization represents a collection of people organized together into a community or other social, commercial or political structure. Organizations can be corporations, schools, government agencies, clubs, etc.\"\n\n\n\n\nschema:name\n\n\"Acme Corporation\" - The official name of the organization\n\"State University\" - Use the full, formal name when possible\n\n\n\n\nschema:legalName\n\n\"Acme Corporation, Inc.\" - The official name as registered in legal documents\n\"State University Foundation\" - May include legal designations like Inc., LLC, etc.\n\n\n\n\nschema:url\n\n\"https://example.com\" - The organization’s official website URL\n\"https://university.edu\" - Should be the primary or canonical URL\n\n\n\n\nschema:address\n\nschema:PostalAddress - The physical location of the organization\nLinks to a postal address that contains street, city, and other details"
+  },
+  {
+    "objectID": "example.html#postaladdress",
+    "href": "example.html#postaladdress",
+    "title": "Schema.org Simplified Vocabulary",
+    "section": "",
+    "text": "schema:PostalAddress\nThe mailing address for a person, organization, or place.\n\n\nrdfs:comment\n\n\"A PostalAddress represents a physical address, typically consisting of street address, locality (city), region, postal code, and country.\"\n\n\n\n\nschema:streetAddress\n\n\"123 Main St.\" - The street number, name, and unit or apartment number\n\"456 Park Ave, Suite 789\" - Should include all details needed for mail delivery\n\n\n\n\nschema:addressLocality\n\n\"New York\" - The city or locality name\n\"San Francisco\" - Use the common name of the city, not abbreviations\n\n\n\n\nschema:addressRegion\n\n\"NY\" - The state, province, or region, often abbreviated\n\"California\" - Can be full name or standard abbreviation depending on locale\n\n\n\n\nschema:postalCode\n\n\"10001\" - The postal or zip code\n\"94103\" - Format varies by country\n\n\n\n\nschema:addressCountry\n\n\"US\" - The country, preferably as an ISO 3166-1 alpha-2 code\n\"United States\" - Can also be the full country name"
+  }
+]
