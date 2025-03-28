@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "Markdown Vocabularies"
+  site-url: "https://charlesvardeman.github.io/markdown-voc/"
+  description: "Develop RDF vocabularies in Markdown"
+  repo-branch: main
+  repo-url: "https://github.com/charlesvardeman/markdown-voc/"
